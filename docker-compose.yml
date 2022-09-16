@@ -1,0 +1,59 @@
+version: "3"
+services:
+    web:
+        build:
+            context: .
+            dockerfile: docker/web.Dockerfile
+        ports:
+            - "$HTTP_PORT_BACK:80"
+        tty:
+            true
+        networks:
+            net:
+        depends_on:
+            - app
+        volumes:
+            - .:/var/www/html
+        container_name: mello_web
+    app:
+        build:
+            context: .
+            dockerfile: docker/app.Dockerfile
+        tty:
+            true
+        environment:
+            DB_DATABASE: $DB_DATABASE
+            DB_USER: $DB_USERNAME
+            DB_PASSWORD: $DB_PASSWORD
+            DB_HOST: $DB_HOST
+            DB_PORT: $DB_PORT
+        networks:
+            net:
+        volumes:
+            - .:/var/www/html
+        container_name: mello_app
+    db:
+        image: mysql:8.0
+        ports:
+            - "$DB_PORT:3306"
+        environment:
+            DB_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+            DB_DATABASE: $DB_DATABASE
+            DB_USER: $DB_USERNAME
+            DB_PASSWORD: $DB_PASSWORD
+            DB_PORT: $DB_PORT
+        networks:
+            net:
+        volumes:
+           - db_mello_volume:/var/lib/mysql
+        container_name: mello_db
+volumes:
+    db_mello_volume:
+networks:
+    net:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                -
+                    subnet: $NETWORK
