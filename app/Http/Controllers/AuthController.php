@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthLoginRequest;
+use App\Http\Requests\AuthRegisterRequest;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Http\Request;
 
 use Validator;
 
 class AuthController extends Controller
 {
     protected $service;
+
     /**
      * Create a new AuthController instance.
      *
@@ -22,6 +23,7 @@ class AuthController extends Controller
 
         $this->middleware('auth', ['except' => ['login', 'register']]);
     }
+
     /**
      * Get a JWT via given credentials.
      *
@@ -30,26 +32,17 @@ class AuthController extends Controller
     public function login(AuthLoginRequest $request){
         $token = auth()->attempt($request->validated());
 
-        return $this->createNewToken($token);
+        return $this->service->createNewToken($token);
     }
+
     /**
      * Register a User.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
-        }
-        $user = User::create(array_merge(
-                    $validator->validated(),
-                    ['password' => bcrypt($request->password)]
-                ));
+    public function register(AuthRegisterRequest $request) {
+        $user = $this->service->create($request->validated());
+
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user
@@ -65,14 +58,16 @@ class AuthController extends Controller
         auth()->logout();
         return response()->json(['message' => 'User successfully signed out']);
     }
+
     /**
      * Refresh a token.
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function refresh() {
-        return $this->createNewToken(auth()->refresh());
+        return $this->service->createNewToken(auth()->refresh());
     }
+
     /**
      * Get the authenticated User.
      *
@@ -80,20 +75,5 @@ class AuthController extends Controller
      */
     public function userProfile() {
         return response()->json(auth()->user());
-    }
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function createNewToken($token){
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
-        ]);
     }
 }
