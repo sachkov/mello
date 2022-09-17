@@ -15,10 +15,10 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::group(['prefix' => 'auth'], function () {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+Route::controller(AuthController::class)->prefix('auth')->group(function () {
+    Route::post('/login', 'login');
+    Route::post('/register', 'register');
+    Route::post('/logout', 'logout');
+    Route::post('/refresh', 'refresh');
+    Route::get('/user-profile', 'userProfile');
 });

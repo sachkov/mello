@@ -177,6 +177,7 @@ return [
 
         //new
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
     ],
 
     /*

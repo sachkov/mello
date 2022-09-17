@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AuthLoginRequest;
 use App\Models\User;
+use App\Services\UserService;
+use Illuminate\Http\Request;
+
 use Validator;
 
 class AuthController extends Controller
 {
+    protected $service;
     /**
      * Create a new AuthController instance.
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct(UserService $userService) {
+        $this->service = $userService;
+
         $this->middleware('auth', ['except' => ['login', 'register']]);
     }
     /**
@@ -22,17 +27,9 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request){
-    	$validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-        if (! $token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+    public function login(AuthLoginRequest $request){
+        $token = auth()->attempt($request->validated());
+
         return $this->createNewToken($token);
     }
     /**
