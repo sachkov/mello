@@ -2,12 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Employer;
 use Closure;
-use Illuminate\Auth\AuthenticationException;
+use App\Exceptions\AuthenticationException;
 use Illuminate\Contracts\Auth\Factory as Auth;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
-use Tymon\JWTAuth\JWTGuard;
 
 class Authenticate
 {
@@ -23,10 +20,6 @@ class Authenticate
         if ($this->auth->guard($guard)->guest()) {
             throw new AuthenticationException;
         }
-
-        /** @var JWTGuard $guard */
-        $guard = $this->auth->guard($guard);
-        $user  = $guard->user();
 
         return $next($request);
     }
