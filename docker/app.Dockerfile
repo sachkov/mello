@@ -50,7 +50,7 @@ COPY ./docker/conf/php.app/php.ini /usr/local/etc/php/conf.d/php.ini
 COPY ./ /var/www/html
 
 RUN \
-    chown -R www-data:www-data /var/www/html \
+    chown -R :www-data /var/www/html \
     && chmod -R 777 /var/www/html/storage \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && composer install
