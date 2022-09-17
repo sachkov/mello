@@ -2,20 +2,32 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use App\Models\Employer;
+use Closure;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Contracts\Auth\Factory as Auth;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\JWTGuard;
 
-class Authenticate extends Middleware
+class Authenticate
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
-     */
-    protected function redirectTo($request)
+    protected $auth;
+
+    public function __construct(Auth $auth)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        $this->auth = $auth;
+    }
+
+    public function handle($request, Closure $next, $guard = null)
+    {
+        if ($this->auth->guard($guard)->guest()) {
+            throw new AuthenticationException;
         }
+
+        /** @var JWTGuard $guard */
+        $guard = $this->auth->guard($guard);
+        $user  = $guard->user();
+
+        return $next($request);
     }
 }
