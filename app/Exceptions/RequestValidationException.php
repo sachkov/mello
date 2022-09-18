@@ -2,9 +2,9 @@
 namespace App\Exceptions;
 
 
-class RequestValidationException extends \Exception
+class RequestValidationException extends AppBaseException
 {
-    protected $code = 401;
+    protected $code = 400;
 
     protected $message = 'Request validation exception';
 }

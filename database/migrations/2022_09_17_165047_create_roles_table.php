@@ -13,15 +13,17 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        if (! Schema::hasTable('roles')) {
+            Schema::create('roles', function (Blueprint $table) {
+                $table->id();
+                $table->timestamps();
 
-            $table->string('name');
-            $table->string('code');
+                $table->string('name');
+                $table->string('code');
 
-            $table->index(['code']);
-        });
+                $table->index(['code']);
+            });
+        }
     }
 
     /**
@@ -31,6 +33,8 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        if (Schema::hasTable('roles')) {
+            Schema::dropIfExists('roles');
+        }
     }
 }

@@ -2,7 +2,7 @@
 namespace App\Exceptions;
 
 
-class AuthenticationException extends \Exception
+class AuthenticationException extends AppBaseException
 {
     protected $code = 401;
 

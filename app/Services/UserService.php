@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Exceptions\PermissionException;
 use App\Models\User;
 use App\Repositories\UserRepository;
+
 
 class UserService
 {
@@ -15,6 +17,8 @@ class UserService
 
     public function create(array $form):User
     {
+        $form['password'] = bcrypt($form['password']);
+
         return $this->userRepository->create($form);
     }
 
@@ -25,5 +29,14 @@ class UserService
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user()
         ]);
+    }
+
+    public function checkPermission(User $user, string $route)
+    {
+        if($this->userRepository->isAdmin($user)) return true;
+
+        if(! $this->userRepository->havePermission($user, $route)){
+            throw new PermissionException;
+        }
     }
 }

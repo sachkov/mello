@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        if (! Schema::hasTable('posts')) {
-            Schema::create('posts', function (Blueprint $table) {
+        if (! Schema::hasTable('permissions')) {
+            Schema::create('permissions', function (Blueprint $table) {
                 $table->id();
                 $table->timestamps();
 
-                $table->unsignedBigInteger('user_id');
-                $table->string('title');
-                $table->text('content')->nullable();
+                $table->string('name');
+                $table->string('code');
 
-                $table->foreign('user_id')->references('id')->on('users');
+                $table->index(['code']);
             });
         }
     }
@@ -34,8 +33,8 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('posts')) {
-            Schema::dropIfExists('posts');
+        if (Schema::hasTable('permissions')) {
+            Schema::dropIfExists('permissions');
         }
     }
 }
