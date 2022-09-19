@@ -51,10 +51,9 @@ COPY ./ /var/www/html
 
 RUN \
     chown -R :www-data /var/www/html \
-    && chmod -R 777 /var/www/html/storage \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && composer install \
-    && composer update
+    && chmod +x /docker/app.sh
 
 
 
