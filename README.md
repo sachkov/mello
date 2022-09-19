@@ -23,5 +23,13 @@ php artisan db:seed
 
 ### Не успел добавить:
 
-1. Юнит тесты.  
-2. Описание классов и методов docblock.  
+1. По какой-то причине не полностью отрабатывает скрипт в dockerfile сервиса app. Для корректного запуска приложения требуется вручную поменять права на папки и запустить composer update командами:
+```bash
+docker exec -it mello_app bash
+chown -R :www-data /var/www/html
+chmod -R 777 /var/www/html/storage
+composer update
+```
+2. Юнит тесты.  
+3. Описание классов и методов docblock.  
+
