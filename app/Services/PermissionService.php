@@ -36,4 +36,16 @@ class PermissionService
     {
         return $this->repository->delete($permissionId);
     }
+
+    public function getRoutes():array
+    {
+        $routeCollection = \Illuminate\Support\Facades\Route::getRoutes();
+        $res = [];
+
+        foreach ($routeCollection as $value) {
+            if(isset($value->action['as'])) $res[] = $value->action['as'];
+        }
+
+        return $res;
+    }
 }

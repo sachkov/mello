@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\PermissionRequest;
 use App\Services\PermissionService;
 
 class PermissionController extends Controller
@@ -28,14 +28,14 @@ class PermissionController extends Controller
         ]);
     }
 
-    public function store(PostRequest $request)
+    public function store(PermissionRequest $request)
     {
         return response()->json([
             'post' => $this->service->create($request->validated())
         ]);
     }
 
-    public function update(PostRequest $request, int $permissionId)
+    public function update(PermissionRequest $request, int $permissionId)
     {
         return response()->json([
             'post' => $this->service->update($request->validated(), $permissionId)
@@ -51,14 +51,10 @@ class PermissionController extends Controller
 
     public function routes()
     {
-        $routeCollection = \Illuminate\Support\Facades\Route::getRoutes();
-
-        foreach ($routeCollection as $value) {
-            if(isset($value->action['as'])) $arr[] = $value->action['as'];
-        }
+        $routes = $this->service->getRoures();
 
         return response()->json([
-            'routes' => $arr
+            'routes' => $routes
         ]);
     }
 }

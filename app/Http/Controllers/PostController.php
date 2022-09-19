@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\PostRequest;
 use App\Services\PostService;
 
 class PostController extends Controller
@@ -21,21 +21,21 @@ class PostController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($postId)
     {
         return response()->json([
-            'post' => $this->service->get($id)
+            'post' => $this->service->get($postId)
         ]);
     }
 
-    public function store(CreatePostRequest $request)
+    public function store(PostRequest $request)
     {
         return response()->json([
             'post' => $this->service->create($request->validated())
         ]);
     }
 
-    public function update(CreatePostRequest $request, int $postId)
+    public function update(PostRequest $request, int $postId)
     {
         return response()->json([
             'post' => $this->service->update($request->validated(), $postId)
