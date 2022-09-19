@@ -16,10 +16,12 @@ class RoleController extends Controller
 
     public function bind_permissions(BindRolePermissionsRequest $request, $roleId)
     {
-        $this->service->sync_permissions($request->validated(), $roleId);
+        $permissions = $this->service
+            ->sync_permissions($request->validated(), $roleId);
 
         return response()->json([
-            'result' => 'permissions was binded.'
+            'result'        => 'permissions was binded.',
+            'permissions'   => $permissions
         ]);
     }
 }

@@ -25,11 +25,19 @@ class RoleService
         $arPermissions = $request['permissions'];
 
         $permissions = $this->permissionRepository
+            ->whereIn('id', $arPermissions);
+
+        $permissionsIds = $permissions
             ->select('id')
-            ->whereIn('id', $arPermissions)
             ->pluck('id')
             ->all();
 
-        $role->permissions()->sync($permissions);
+        $role->permissions()->sync($permissionsIds);
+
+        $permissionsCollection = $permissions
+            ->with('roles')
+            ->get();
+
+        return $permissionsCollection;
     }
 }
