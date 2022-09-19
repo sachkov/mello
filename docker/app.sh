@@ -2,6 +2,6 @@
 
 docker exec mello_app bash ./docker/composer_update.sh
 
-if ! [ -f vendor ]; then
+if ! [ -d vendor ]; then
 chown -R $HOST_UID:www-data vendor
 fi
