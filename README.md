@@ -5,10 +5,20 @@
 ### Схема развертывания
 
 - Установить Docker и Docker-compose
-- Клонировать проект [https://github.com/sachkov/mello](https://github.com/sachkov/mello.git)  
+- Клонировать проект
+```bash
+git clone https://github.com/sachkov/mello.git
+```
+- Перейти в папку mello
+```bash
+cd mello
+```
 - Переименовать **.env.example** в **.env**
+```bash
+cp .env.example .env
+```
 - В зависимости от конфигурации вашей системы возможно необходимо будет изменить адрес локальной сети для подключения к БД, параметр *DB_HOST* в файле **.env**.  
-- Запустить сервер (из папки проекта)
+- Собрать проект и запустить проложение
 ```bash
 ./start
 ```
@@ -20,16 +30,17 @@ php artisan migrate
 ```bash
 php artisan db:seed
 ```
+- Остановить контейнеры: команда **stop**
+```bash
+./stop
+```
+- Запустить контейнеры: команда **stop**
+```bash
+./up
+```
 
 ### Не успел добавить:
 
-1. По какой-то причине не полностью отрабатывает скрипт в dockerfile сервиса app. Для корректного запуска приложения требуется вручную поменять права на папки и запустить composer update командами:
-```bash
-docker exec -it mello_app bash
-chown -R :www-data /var/www/html
-chmod -R 777 /var/www/html/storage
-composer update
-```
-2. Юнит тесты.  
-3. Описание классов и методов docblock.  
+1. Юнит тесты.  
+2. Описание классов и методов docblock.  
 
