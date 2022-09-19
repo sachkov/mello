@@ -32,6 +32,7 @@ services:
         volumes:
             - .:/var/www/html
         container_name: mello_app
+        command: /docker/app.sh
     db:
         image: mysql:8.0
         ports:
