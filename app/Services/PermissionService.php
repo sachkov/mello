@@ -14,12 +14,17 @@ class PermissionService
 
     public function get(int $id)
     {
-        return $this->repository->findByField('id',$id)->first() ?? new \stdClass;
+        $permission = $this->repository
+            ->with('roles')
+            ->findByField('id',$id)
+            ->first();
+
+        return $permission ?? new \stdClass;
     }
 
     public function getAll()
     {
-        return $this->repository->get();
+        return $this->repository->with('roles')->get();
     }
 
     public function create(array $permission)
@@ -29,11 +34,29 @@ class PermissionService
 
     public function update(array $permission, $permissionId)
     {
-        return $this->repository->update($permission, $permissionId);
+        $permission = $this->repository->update($permission, $permissionId);
+
+        return $permission->with('roles')->first();
     }
 
     public function delete($permissionId)
     {
         return $this->repository->delete($permissionId);
+    }
+
+    public function getRoutes():array
+    {
+        $routeCollection = \Illuminate\Support\Facades\Route::getRoutes();
+        $res = [];
+
+        foreach ($routeCollection as $value) {
+            if(isset($value->action['as'])){
+                if(strpos($value->action['as'], 'ignition') !== false) continue;
+
+                $res[] = $value->action['as'];
+            }
+        }
+
+        return $res;
     }
 }

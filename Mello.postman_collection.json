@@ -1,0 +1,680 @@
+{
+	"info": {
+		"_postman_id": "41e06f1a-6b0f-42a1-974e-d8729b5873b4",
+		"name": "Mello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10805393"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/auth/register?name=google&email=aaa@google.com&password=yra00100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "google"
+						},
+						{
+							"key": "email",
+							"value": "aaa@google.com"
+						},
+						{
+							"key": "password",
+							"value": "yra00100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/auth/login?email=sachkov_y@mail.ru&password=yra00100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "sachkov_y@mail.ru"
+						},
+						{
+							"key": "password",
+							"value": "yra00100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzM5MjYzMywiZXhwIjoxNjYzMzk2MjMzLCJuYmYiOjE2NjMzOTI2MzMsImp0aSI6IlZpZ2xCWU40d1JESmlVUlkiLCJzdWIiOjIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.S2CnL4a4YolfYpqZoZ7Lo1ncESeoJd2g0dcQdT3aMYk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/auth/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"auth",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9yZWZyZXNoIiwiaWF0IjoxNjYzMzkyNjMzLCJleHAiOjE2NjMzOTYzMjQsIm5iZiI6MTY2MzM5MjcyNCwianRpIjoiQ3E2Q2hDZjFlck1OZUViWCIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.C5eNNEdizjvgMPFCygX9tMcCzbOUkEn4cT69NwC4Bqg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzQ3MjU5NiwiZXhwIjoxNjYzNDc2MTk2LCJuYmYiOjE2NjM0NzI1OTYsImp0aSI6ImJQM0ZCTXhUUzE3WVJ0NWciLCJzdWIiOjksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.o6pSE9sJo5C09iJ25aycHnRej6l1jDtXloTex51HgAE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/auth/user-profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"auth",
+						"user-profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get post by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzUyMzA0OCwiZXhwIjoxNjYzNTI2NjQ4LCJuYmYiOjE2NjM1MjMwNDgsImp0aSI6IjV4TmZsRDFrajRHR3JVcGkiLCJzdWIiOjksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.LzCAovSGX4sn276JqN8v5TFvl19NcpCJ1p170aZAazQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/posts/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"posts",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzUxOTMzOCwiZXhwIjoxNjYzNTIyOTM4LCJuYmYiOjE2NjM1MTkzMzgsImp0aSI6InA1SHhUMHgwUUpNNjZtdnIiLCJzdWIiOjksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.GJ27Ei4LOcygfUyxs3Ugyel47Qr2O51PKcW7fPXfZBo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/posts?title=my post2&content=come content",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"posts"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "my post2"
+						},
+						{
+							"key": "content",
+							"value": "come content"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzUxOTMzOCwiZXhwIjoxNjYzNTIyOTM4LCJuYmYiOjE2NjM1MTkzMzgsImp0aSI6InA1SHhUMHgwUUpNNjZtdnIiLCJzdWIiOjksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.GJ27Ei4LOcygfUyxs3Ugyel47Qr2O51PKcW7fPXfZBo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/posts/3?title=my post2&content=come content, changed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"posts",
+						"3"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "my post2"
+						},
+						{
+							"key": "content",
+							"value": "come content, changed"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzUxOTMzOCwiZXhwIjoxNjYzNTIyOTM4LCJuYmYiOjE2NjM1MTkzMzgsImp0aSI6InA1SHhUMHgwUUpNNjZtdnIiLCJzdWIiOjksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.GJ27Ei4LOcygfUyxs3Ugyel47Qr2O51PKcW7fPXfZBo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/posts/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"posts",
+						"2"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "my post2",
+							"disabled": true
+						},
+						{
+							"key": "content",
+							"value": "come content, changed",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all posts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzUxOTMzOCwiZXhwIjoxNjYzNTIyOTM4LCJuYmYiOjE2NjM1MTkzMzgsImp0aSI6InA1SHhUMHgwUUpNNjZtdnIiLCJzdWIiOjksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.GJ27Ei4LOcygfUyxs3Ugyel47Qr2O51PKcW7fPXfZBo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/posts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"posts",
+						""
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "my post2",
+							"disabled": true
+						},
+						{
+							"key": "content",
+							"value": "come content, changed",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get my posts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzUzNzE4OSwiZXhwIjoxNjYzNTQwNzg5LCJuYmYiOjE2NjM1MzcxODksImp0aSI6IjRGaHRzY1BqTXhwVGhxMjEiLCJzdWIiOjE0LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.wzPL4Nd03Dhokf2usJK2206AOxuE2ghhqZ7suOnWrjk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/posts/my",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"posts",
+						"my"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get routes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzU2NjA0NCwiZXhwIjoxNjYzNTY5NjQ0LCJuYmYiOjE2NjM1NjYwNDQsImp0aSI6ImEwbVE3SXlGYVZJSklFNnAiLCJzdWIiOjEzLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Fguta2wbw4caKpVmDKn1H8mM93wQsFyuO0URRs1tCg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/routes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"routes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set role permissions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzU2NjA0NCwiZXhwIjoxNjYzNTY5NjQ0LCJuYmYiOjE2NjM1NjYwNDQsImp0aSI6ImEwbVE3SXlGYVZJSklFNnAiLCJzdWIiOjEzLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Fguta2wbw4caKpVmDKn1H8mM93wQsFyuO0URRs1tCg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/role_permission/3?permissions[]=1&permissions[]=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"role_permission",
+						"3"
+					],
+					"query": [
+						{
+							"key": "permissions[]",
+							"value": "1"
+						},
+						{
+							"key": "permissions[]",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all permissions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzU2NjA0NCwiZXhwIjoxNjYzNTY5NjQ0LCJuYmYiOjE2NjM1NjYwNDQsImp0aSI6ImEwbVE3SXlGYVZJSklFNnAiLCJzdWIiOjEzLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Fguta2wbw4caKpVmDKn1H8mM93wQsFyuO0URRs1tCg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/permissions/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"permissions",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get permission by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzU2NjA0NCwiZXhwIjoxNjYzNTY5NjQ0LCJuYmYiOjE2NjM1NjYwNDQsImp0aSI6ImEwbVE3SXlGYVZJSklFNnAiLCJzdWIiOjEzLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Fguta2wbw4caKpVmDKn1H8mM93wQsFyuO0URRs1tCg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/permissions/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"permissions",
+						"1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update permission",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzU2NjA0NCwiZXhwIjoxNjYzNTY5NjQ0LCJuYmYiOjE2NjM1NjYwNDQsImp0aSI6ImEwbVE3SXlGYVZJSklFNnAiLCJzdWIiOjEzLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Fguta2wbw4caKpVmDKn1H8mM93wQsFyuO0URRs1tCg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/permissions/5?name=watch existing routes&code=routes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"permissions",
+						"5"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "watch existing routes"
+						},
+						{
+							"key": "code",
+							"value": "routes"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete permission",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzU2NjA0NCwiZXhwIjoxNjYzNTY5NjQ0LCJuYmYiOjE2NjM1NjYwNDQsImp0aSI6ImEwbVE3SXlGYVZJSklFNnAiLCJzdWIiOjEzLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Fguta2wbw4caKpVmDKn1H8mM93wQsFyuO0URRs1tCg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/permissions/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"permissions",
+						"1"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "watch routes",
+							"disabled": true
+						},
+						{
+							"key": "code",
+							"value": "routes",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create permission",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODUwMlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzU2NjA0NCwiZXhwIjoxNjYzNTY5NjQ0LCJuYmYiOjE2NjM1NjYwNDQsImp0aSI6ImEwbVE3SXlGYVZJSklFNnAiLCJzdWIiOjEzLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Fguta2wbw4caKpVmDKn1H8mM93wQsFyuO0URRs1tCg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8502/api/permissions/?name=watch existing routes&code=routes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8502",
+					"path": [
+						"api",
+						"permissions",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "watch existing routes"
+						},
+						{
+							"key": "code",
+							"value": "routes"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
